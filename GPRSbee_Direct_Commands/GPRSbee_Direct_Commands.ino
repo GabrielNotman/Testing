@@ -17,11 +17,11 @@ void setup()
   //Intialise the GPRSbee
 
   //Ndogo
-  gprsbee.initNdogoSIM800(Serial1, NDOGO_PWRKEY_PIN, NDOGO_VBAT_PIN, NDOGO_STATUS_PIN);
+  //gprsbee.initNdogoSIM800(Serial1, NDOGO_PWRKEY_PIN, NDOGO_VBAT_PIN, NDOGO_STATUS_PIN);
    
   //Mbili
-  //gprsbee.init(Serial1, BEECTS, BEEDTR);
-  //gprsbee.setPowerSwitchedOnOff(true); 
+  gprsbee.init(Serial1, BEECTS, BEEDTR);
+  gprsbee.setPowerSwitchedOnOff(true); 
 
   //Setup debugging
   gprsbee.setDiag(Serial);
