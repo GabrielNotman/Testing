@@ -2,8 +2,8 @@
 #include <Wire.h>
 #include <GPRSbee.h>
 
-//#define VARIANT_NDOGO
-#define VARIANT_MBILI
+#define VARIANT_NDOGO
+//#define VARIANT_MBILI
 
 #define NDOGO_PWRKEY_PIN 18
 #define NDOGO_VBAT_PIN 23
@@ -13,10 +13,10 @@
 #define NORMAL_PREFIX "http://"
 #define SECURE_PREFIX "https://"
 #define NORMAL_URL "time.sodaq.net"
-#define SECURE_URL "www.ssllabs.com/ssltest/"
+#define SECURE_URL "www.gmail.com"
 
 #define ON_DELAY 8000
-#define COMMAND_DELAY 2000 
+#define COMMAND_DELAY 5000 
 #define GET_DELAY 20000
 
 void setup() 
@@ -42,6 +42,11 @@ void setup()
 
   //Run HTTPS test
   HTTPSGetTest(); 
+  
+  //GPRSbee Library HTTP GET
+  int buffSize = 1024;
+  char buff[buffSize];
+  gprsbee.doHTTPGET(APN, NORMAL_URL, buff, buffSize);
 }
 
 void loop() 
@@ -67,17 +72,15 @@ void HTTPGetTest()
   ATCommand("AT+SAPBR=1,1"); 
   ATCommand("AT+SAPBR=2,1"); 
   
-  //Initialise HTTP & Turn off SSL
-  ATCommand("AT+HTTPINIT");
-  ATCommand("AT+HTTPSSL=0");
-  ATCommand("AT+HTTPSSL?");
-    
   //Try HTTPS GET
+  ATCommand("AT+HTTPINIT");
   ATCommand("AT+HTTPPARA=\"CID\",1"); 
   ATCommand("AT+HTTPPARA=\"URL\",\"" + String(NORMAL_PREFIX) + String(NORMAL_URL) +"\""); 
+  ATCommand("AT+HTTPPARA=\"REDIR\",1");
+  ATCommand("AT+HTTPSSL=0");
+  ATCommand("AT+HTTPSSL?");
   ATCommand("AT+HTTPACTION=0", GET_DELAY); 
   ATCommand("AT+HTTPREAD", GET_DELAY);
-  Serial.println();  
   
   //Terminate HTTP & GPRS and then switch off
   ATCommand("AT+HTTPTERM"); 
@@ -96,17 +99,15 @@ void HTTPSGetTest()
   ATCommand("AT+SAPBR=1,1"); 
   ATCommand("AT+SAPBR=2,1"); 
   
-  //Initialise HTTP & SSL
-  ATCommand("AT+HTTPINIT");
-  ATCommand("AT+HTTPSSL=1");
-  ATCommand("AT+HTTPSSL?");
-    
   //Try HTTPS GET
+  ATCommand("AT+HTTPINIT");
   ATCommand("AT+HTTPPARA=\"CID\",1"); 
   ATCommand("AT+HTTPPARA=\"URL\",\"" + String(SECURE_PREFIX) + String(SECURE_URL) +"\""); 
+  ATCommand("AT+HTTPPARA=\"REDIR\",1");
+  ATCommand("AT+HTTPSSL=1");
+  ATCommand("AT+HTTPSSL?");
   ATCommand("AT+HTTPACTION=0", GET_DELAY); 
   ATCommand("AT+HTTPREAD", GET_DELAY);
-  Serial.println();  
   
   //Terminate HTTP & GPRS and then switch off
   ATCommand("AT+HTTPTERM"); 
