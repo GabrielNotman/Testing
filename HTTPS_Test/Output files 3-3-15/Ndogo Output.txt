@@ -1,0 +1,282 @@
+on powerPin, vbatPin
+>> AT
+AT
+OK
+
+Sending AT Command, waiting 5.00 seconds for a response
+RDY
++CFUN: 1
++CPIN: READY
+Call Ready
+SMS Ready
+>> AT+SAPBR=3,1,"Contype","GPRS"
+AT+SAPBR=3,1,"Contype","GPRS"
+OK
+
+Sending AT Command, waiting 5.00 seconds for a response
+>> AT+SAPBR=3,1,"APN","Everywhere"
+AT+SAPBR=3,1,"APN","Everywhere"
+OK
+
+Sending AT Command, waiting 5.00 seconds for a response
+>> AT+SAPBR=1,1
+AT+SAPBR=1,1
+OK
+
+Sending AT Command, waiting 5.00 seconds for a response
+>> AT+SAPBR=2,1
+AT+SAPBR=2,1+SAPBR: 1,1,"31.82.131.106"
+OK
+
+Sending AT Command, waiting 5.00 seconds for a response
+>> AT+HTTPINIT
+AT+HTTPINIT
+OK
+
+Sending AT Command, waiting 5.00 seconds for a response
+>> AT+HTTPPARA="CID",1
+AT+HTTPPARA="CID",1
+OK
+
+Sending AT Command, waiting 5.00 seconds for a response
+>> AT+HTTPPARA="URL","http://time.sodaq.net"
+AT+HTTPPARA="URL","http://time.sodaq.net"
+OK
+
+Sending AT Command, waiting 5.00 seconds for a response
+>> AT+HTTPPARA="REDIR",1
+AT+HTTPPARA="REDIR",1
+OK
+
+Sending AT Command, waiting 5.00 seconds for a response
+>> AT+HTTPSSL=0
+AT+HTTPSSL=0
+OK
+
+Sending AT Command, waiting 5.00 seconds for a response
+>> AT+HTTPSSL?
+AT+HTTPSSL?+HTTPSSL: 0
+OK
+
+Sending AT Command, waiting 20.00 seconds for a response
+>> AT+HTTPACTION=0
+AT+HTTPACTION=0
+OK
+
+Sending AT Command, waiting 20.00 seconds for a response
++HTTPACTION: 0,200,11
+>> AT+HTTPREAD
+AT+HTTPREAD
++HTTPREAD: 11
+1425420983
+OK
+
+Sending AT Command, waiting 5.00 seconds for a response
+>> AT+HTTPTERM
+AT+HTTPTERM
+OK
+
+Sending AT Command, waiting 5.00 seconds for a response
+>> AT+SAPBR=0,1
+AT+SAPBR=0,1
+OK
+
+off vbatPin
+on powerPin, vbatPin
+>> AT
+AT
+OK
+
+Sending AT Command, waiting 5.00 seconds for a response
+RDY
++CFUN: 1
++CPIN: READY
+Call Ready
+SMS Ready
+>> AT+SAPBR=3,1,"Contype","GPRS"
+AT+SAPBR=3,1,"Contype","GPRS"
+OK
+
+Sending AT Command, waiting 5.00 seconds for a response
+>> AT+SAPBR=3,1,"APN","Everywhere"
+AT+SAPBR=3,1,"APN","Everywhere"
+OK
+
+Sending AT Command, waiting 5.00 seconds for a response
+>> AT+SAPBR=1,1
+AT+SAPBR=1,1
+OK
+
+Sending AT Command, waiting 5.00 seconds for a response
+>> AT+SAPBR=2,1
+AT+SAPBR=2,1+SAPBR: 1,1,"31.78.108.232"
+OK
+
+Sending AT Command, waiting 5.00 seconds for a response
+>> AT+HTTPINIT
+AT+HTTPINIT
+OK
+
+Sending AT Command, waiting 5.00 seconds for a response
+>> AT+HTTPPARA="CID",1
+AT+HTTPPARA="CID",1
+OK
+
+Sending AT Command, waiting 5.00 seconds for a response
+>> AT+HTTPPARA="URL","https://www.gmail.com"
+AT+HTTPPARA="URL","https://www.gmail.com"
+OK
+
+Sending AT Command, waiting 5.00 seconds for a response
+>> AT+HTTPPARA="REDIR",1
+AT+HTTPPARA="REDIR",1
+OK
+
+Sending AT Command, waiting 5.00 seconds for a response
+>> AT+HTTPSSL=1
+AT+HTTPSSL=1
+OK
+
+Sending AT Command, waiting 5.00 seconds for a response
+>> AT+HTTPSSL?
+AT+HTTPSSL?+HTTPSSL: 1
+OK
+
+Sending AT Command, waiting 20.00 seconds for a response
+>> AT+HTTPACTION=0
+AT+HTTPACTION=0
+OK
+
+Sending AT Command, waiting 20.00 seconds for a response
++HTTPACTION: 0,200,59811
+>> AT+HTTPREAD
+AT+HTTPREAD+HTTPREAD: 59811
+<SEE Ndogo HTTPS Read Data.txt>
+
+Sending AT Command, waiting 5.00 seconds for a response
+>> AT+HTTPTERM
+AT+HTTPTERM
+OK
+
+Sending AT Command, waiting 5.00 seconds for a response
+>> AT+SAPBR=0,1
+AT+SAPBR=0,1
+OK
+
+off vbatPin
+on powerPin, vbatPin
+
+>> AT
+AT
+OK
+
+>> ATE0
+ATE0
+OK
+
+>> AT+CSQ
+
+RDY
++CFUN: 1
++CSQ: 0,0
+OK
+
+>> AT
+OK
+
+>> AT+CSQ
++CSQ: 0,0
+OK
+
+>> AT
+OK
+
+>> AT+CSQ
++CSQ: 0,0
+OK
+
+>> AT
+OK
+
+>> AT+CSQ
++CSQ: 0,0
+OK
+
+>> AT
+OK
+
+>> AT+CSQ
++CSQ: 0,0
+OK
++CPIN: READY
+
+>> AT
+OK
+
+>> AT+CSQ
++CSQ: 0,0
+OK
+
+>> AT
+OK
+
+>> AT+CSQ
++CSQ: 0,0
+OK
+
+>> AT
+OK
+
+>> AT+CSQ
++CSQ: 0,0
+OK
+
+>> AT
+OK
+
+>> AT+CSQ
++CSQ: 0,0
+OK
+
+>> AT
+OK
+
+>> AT+CSQ
++CSQ: 0,0
+OK
+
+Call Ready
+>> AT
+OK
+
+>> AT+CSQ
++CSQ: 0,0
+OK
+
+>> AT
+OK
+
+>> AT+CSQ
++CSQ: 25,0
+OK
+
+>> AT+CREG?
++CREG: 0,2
+OK
+
+SMS Ready
+>> AT
+OK
+
+>> AT+CREG?
++CREG: 0,1
+OK
+
+>> AT+CGATT=1
+ERROR
+
+readLine timed out
+doHTTPGET failed!
+off vbatPin
+
+
