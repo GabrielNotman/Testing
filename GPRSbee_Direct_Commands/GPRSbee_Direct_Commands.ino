@@ -16,12 +16,14 @@ void setup()
   
   //Intialise the GPRSbee
 
-  //Ndogo
-  //gprsbee.initNdogoSIM800(Serial1, NDOGO_PWRKEY_PIN, NDOGO_VBAT_PIN, NDOGO_STATUS_PIN);
-   
-  //Mbili
-  gprsbee.init(Serial1, BEECTS, BEEDTR);
-  gprsbee.setPowerSwitchedOnOff(true); 
+  //Intialise the GPRSbee
+  #ifdef ARDUINO_AVR_SODAQ_NDOGO
+    gprsbee.initNdogoSIM800(Serial1, NDOGO_PWRKEY_PIN, NDOGO_VBAT_PIN, NDOGO_STATUS_PIN);
+  #endif
+  #ifdef ARDUINO_AVR_SODAQ_MBILI 
+    gprsbee.init(Serial1, BEECTS, BEEDTR);
+    gprsbee.setPowerSwitchedOnOff(true); 
+  #endif
 
   //Setup debugging
   gprsbee.setDiag(Serial);
@@ -45,10 +47,14 @@ void serialEvent()
   //Echo the input command
   Serial.println(input);
   
+  //Uppercase for on/off
+  String upperCase = input;
+  upperCase.toUpperCase();
+  
   //Handle on/off or AT command
-  if (input == "off")
+  if (upperCase == "OFF")
     gprsbee.off();
-  else if (input == "on")
+  else if (upperCase == "ON")
     gprsbee.on();
   else
     //Send command string

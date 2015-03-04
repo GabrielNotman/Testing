@@ -2,9 +2,6 @@
 #include <Wire.h>
 #include <GPRSbee.h>
 
-#define VARIANT_NDOGO
-//#define VARIANT_MBILI
-
 #define NDOGO_PWRKEY_PIN 18
 #define NDOGO_VBAT_PIN 23
 #define NDOGO_STATUS_PIN 19
@@ -12,8 +9,8 @@
 #define APN "Everywhere"
 #define NORMAL_PREFIX "http://"
 #define SECURE_PREFIX "https://"
-#define NORMAL_URL "time.sodaq.net"
-#define SECURE_URL "www.gmail.com"
+#define NORMAL_URL "www.google.com"
+#define SECURE_URL "www.google.com"
 
 #define ON_DELAY 8000
 #define COMMAND_DELAY 5000 
@@ -22,14 +19,14 @@
 void setup() 
 {
   //Start Serial ports
-  Serial.begin(9600);
+  Serial.begin(57600);
   Serial1.begin(57600);
   
   //Intialise the GPRSbee
-  #ifdef VARIANT_NDOGO
+  #ifdef ARDUINO_AVR_SODAQ_NDOGO
     gprsbee.initNdogoSIM800(Serial1, NDOGO_PWRKEY_PIN, NDOGO_VBAT_PIN, NDOGO_STATUS_PIN);
   #endif
-  #ifdef VARIANT_MBILI
+  #ifdef ARDUINO_AVR_SODAQ_MBILI 
     gprsbee.init(Serial1, BEECTS, BEEDTR);
     gprsbee.setPowerSwitchedOnOff(true); 
   #endif
@@ -67,6 +64,7 @@ void HTTPGetTest()
   delay(ON_DELAY);
   
   //Initialise the GPRS connection
+  ATCommand("ATE0");
   ATCommand("AT+SAPBR=3,1,\"Contype\",\"GPRS\"");
   ATCommand("AT+SAPBR=3,1,\"APN\",\"" + String(APN) + "\"");
   ATCommand("AT+SAPBR=1,1"); 
@@ -94,6 +92,7 @@ void HTTPSGetTest()
   delay(ON_DELAY);
   
   //Initialise the GPRS connection
+  ATCommand("ATE0");
   ATCommand("AT+SAPBR=3,1,\"Contype\",\"GPRS\"");
   ATCommand("AT+SAPBR=3,1,\"APN\",\"" + String(APN) + "\"");
   ATCommand("AT+SAPBR=1,1"); 
