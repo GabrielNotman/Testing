@@ -10,8 +10,8 @@
 void setup() 
 {
   //Start Serial ports
-  Serial.begin(9600);
-  Serial1.begin(9600);
+  Serial.begin(57600);
+  Serial1.begin(57600);
   
   //Intialise the GPRSbee
 
