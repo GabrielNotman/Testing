@@ -2,11 +2,7 @@
 #include <Wire.h>
 #include <GPRSbee.h>
 
-#define NDOGO_PWRKEY_PIN 18
-#define NDOGO_VBAT_PIN 23
-#define NDOGO_STATUS_PIN 19
-
-#define APN "Everywhere"
+#define APN "internet"
 #define NORMAL_PREFIX "http://"
 #define SECURE_PREFIX "https://"
 #define NORMAL_URL "www.google.com"
@@ -24,7 +20,7 @@ void setup()
   
   //Intialise the GPRSbee
   #ifdef ARDUINO_AVR_SODAQ_NDOGO
-    gprsbee.initNdogoSIM800(Serial1, NDOGO_PWRKEY_PIN, NDOGO_VBAT_PIN, NDOGO_STATUS_PIN);
+    gprsbee.initNdogoSIM800(Serial1, SIM800PWRKEY, SIM800VBAT, SIM800STATUS);
   #endif
   #ifdef ARDUINO_AVR_SODAQ_MBILI 
     gprsbee.init(Serial1, BEECTS, BEEDTR);
