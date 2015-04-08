@@ -1,8 +1,9 @@
 //Uncomment the lines for each method
 
 //SoftwareSerial
-//#include <SoftwareSerial.h>
-//SoftwareSerial mySerial(5, 4);
+//#include <Sodaq_PcInt.h>
+#include <SoftwareSerial.h>
+SoftwareSerial mySerial(5, 4);
 
 //Sodaq_SoftSerial
 //#include <Sodaq_PcInt.h>
@@ -10,13 +11,13 @@
 //SoftwareSerial mySerial(5, 4);
 
 //Hardware Serial1
-#define mySerial Serial1
-#define HARDWARE_SERIAL
+//#define mySerial Serial1
+//#define HARDWARE_SERIAL
 
 void setup()
 {
-  mySerial.begin(9600);
   Serial.begin(57600);
+  mySerial.begin(9600);
 }
 
 void loop()
