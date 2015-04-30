@@ -73,7 +73,10 @@ void loop(void)
         Serial.print("create tcp err\r\n");
     }
     
-    String requestLine = String("GET /update?key=") + API_KEY + "&field1=73" + NEW_LINE + NEW_LINE;
+    //If we add "HTTP/1.0" at the end, we receive extra http headers
+    //Adding HTTP/1.1 requires the "HOST: api.thingspeak.com:80" header as well
+    String requestLine = String("GET /update?key=") + API_KEY + "&field1=73 HTTP/1.0" + NEW_LINE + NEW_LINE;
+    //String requestLine = String("GET /time/ HTTP/1.0") + NEW_LINE + NEW_LINE;
     wifi.send((const uint8_t*)requestLine.c_str(), requestLine.length());
     
     uint32_t len = wifi.recv(buffer, sizeof(buffer), 10000);
