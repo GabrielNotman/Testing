@@ -60,11 +60,12 @@ void setup(void)
     }
     
     Serial.println("setup end");
+    Serial.println(String("This sketch was compiled at: ") + __TIME__);
 }
  
 void loop(void)
 {
-    uint8_t buffer[128] = {0};
+    uint8_t buffer[1024] = {0};
     
     if (wifi.createTCP(HOST_NAME, HOST_PORT)) {
         Serial.print("create tcp ok\r\n");
@@ -74,7 +75,7 @@ void loop(void)
     
     String requestLine = String("GET /update?key=") + API_KEY + "&field1=73" + NEW_LINE + NEW_LINE;
     wifi.send((const uint8_t*)requestLine.c_str(), requestLine.length());
-     
+    
     uint32_t len = wifi.recv(buffer, sizeof(buffer), 10000);
     if (len > 0) {
         Serial.print("Received:[");
